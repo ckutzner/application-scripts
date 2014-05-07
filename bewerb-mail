@@ -1,0 +1,5 @@
+#!/bin/bash
+# script to open thunderbird w/ prepopulated fields
+# first draft state, do not use yet!
+thunderbird -compose "to=foo@bar.com,subject='some subject,body='$(cat mail.txt)',attachment='Bewerbung.pdf'"
+
