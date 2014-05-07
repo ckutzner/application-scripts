@@ -1,5 +1,6 @@
 #!/bin/bash
 # script to open thunderbird w/ prepopulated fields
+# call from folder that contains application pdf
 # first draft state, do not use yet!
-thunderbird -compose "to=foo@bar.com,subject='some subject,body='$(cat mail.txt)',attachment='Bewerbung.pdf'"
+thunderbird -compose "to=foo@bar.com,subject='Ihr Stellenangebot',body='$(cat mail.txt)',attachment='Bewerbung.pdf'"
 
