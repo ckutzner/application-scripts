@@ -1,0 +1,7 @@
+#!/bin/bash
+# generates pdf from anschreiben, concatenates it with current cv & testimonials
+
+pdflatex anschreiben.tex
+pdflatex ../../cv-current.tex
+rm *.aux *.log *.out
+pdfjoin anschreiben.pdf cv-current.pdf ../../zeugnisse.pdf --outfile Bewerbung_Camilla_Kutzner.pdf
