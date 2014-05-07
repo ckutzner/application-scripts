@@ -5,6 +5,7 @@ read jobname
 git checkout -b stelle/$jobname
 mkdir $jobname
 cp ~/Dokumente/karriere/bewerb_2014/anschreiben.tex $jobname/
-# cp ~/Dokumente/karriere/bewerb_2014/ausschreibung_template.txt $jobname/ausschreibung.txt
+cp ~/Dokumente/karriere/bewerb_2014/ausschreibung_template.txt $jobname/ausschreibung.txt
+cp ~/Dokumente/karriere/bewerb_2014/unterschrift.png $jobname/
 git add .
-git commit -am "new directory, added anschreiben"
+git commit -am "new directory, added cover letter, description template and signature pic"
