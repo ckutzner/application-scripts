@@ -2,9 +2,12 @@
 # skript zum automatischen anlegen neuer git-branches & verzeichnisse für bewerbungen in bewerb/2014
 echo "Bitte gib einen kurzen Namen für den neuen branch an und drücke ENTER"
 read jobname
+
 git checkout -b stelle/$jobname
-mkdir $jobname
-cp ~/Dokumente/karriere/bewerb_2014/anschreiben.tex $jobname/
-# cp ~/Dokumente/karriere/bewerb_2014/ausschreibung_template.txt $jobname/ausschreibung.txt
+mkdir $(date +%m)/$jobname
+cp ~/Dokumente/karriere/bewerb_2014/anschreiben.tex $(date +%m)/$jobname/
+cp ~/Dokumente/karriere/bewerb_2014/ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
+cp ~/Dokumente/karriere/bewerb_2014/cvphoto.jpg $(date +%m)/$jobname/
+cp ~/Dokumente/karriere/bewerb_2014/unterschrift.jpg $(date +%m)/$jobname
 git add .
-git commit -am "new directory, added anschreiben"
+git commit -am "new directory, added anschreiben + pix"
