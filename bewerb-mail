@@ -3,4 +3,4 @@
 # call from folder that contains application pdf
 # first draft state, do not use yet!
 # todos: make fields more flexible by using variables; read appropriate variables from a file containing the data; pick attachment automatically?
-thunderbird -compose "to=foo@bar.com,subject='Ihr Stellenangebot',body='$(cat mail.txt)',attachment='Bewerbung_Camilla_Kutzner.pdf'"
+thunderbird -compose "to=foo@bar.com,subject='Ihr Stellenangebot',body='$(cat mail.txt)',attachment=$(echo $(pwd)/?ewerbung*)"
