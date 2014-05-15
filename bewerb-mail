@@ -1,6 +1,11 @@
 #!/bin/bash
 # script to open thunderbird w/ prepopulated fields
 # call from folder that contains application pdf
-# first draft state, do not use yet!
-# todos: make fields more flexible by using variables; read appropriate variables from a file containing the data; pick attachment automatically?
-thunderbird -compose "to=foo@bar.com,subject='Ihr Stellenangebot',body='$(cat mail.txt)',attachment=$(echo $(pwd)/?ewerbung*)"
+# make variables
+echo "Bitte gib die Emailadresse an:"
+read address
+echo "Bitte gib einen Betreff ein:"
+read subj
+
+# call thunderbird
+thunderbird -compose "to=$address,subject=$subj,body='$(cat mail.txt)',attachment=$(echo $(pwd)/?ewerbung*)"
