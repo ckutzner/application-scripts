@@ -1,13 +1,13 @@
 #!/bin/bash
-# skript zum automatischen anlegen neuer git-branches & verzeichnisse für bewerbungen in bewerb/2014
+# skript zum automatischen anlegen neuer git-branches & verzeichnisse für bewerbungen; im Bewerbungs-Oberverzeichnis zu gebrauchen
 echo "Bitte gib einen kurzen Namen für den neuen branch an und drücke ENTER"
 read jobname
 
 git checkout -b stelle/$jobname
 mkdir $(date +%m)/$jobname
-cp ~/Dokumente/karriere/bewerb_2014/anschreiben.tex $(date +%m)/$jobname/
-cp ~/Dokumente/karriere/bewerb_2014/ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
-cp ~/Dokumente/karriere/bewerb_2014/cvphoto.jpg $(date +%m)/$jobname/
-cp ~/Dokumente/karriere/bewerb_2014/unterschrift.jpg $(date +%m)/$jobname
+cp $(pwd)/anschreiben.tex $(date +%m)/$jobname/
+cp $(pwd)/ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
+#cp $(pwd)/Dokumente/karriere/bewerb_2014/cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
+#cp $(pwd)/~/Dokumente/karriere/bewerb_2014/unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 git add .
 git commit -am "new directory, added anschreiben + pix"
