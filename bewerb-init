@@ -5,9 +5,9 @@ read jobname
 
 git checkout -b stelle/$jobname
 mkdir $(date +%m)/$jobname
-cp $(pwd)/anschreiben.tex $(date +%m)/$jobname/
-cp $(pwd)/ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
-#cp $(pwd)/Dokumente/karriere/bewerb_2014/cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
-#cp $(pwd)/~/Dokumente/karriere/bewerb_2014/unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
+cp anschreiben.tex $(date +%m)/$jobname/
+cp ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
+#cp cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
+#cp unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 git add .
 git commit -am "new directory, added anschreiben + pix"
