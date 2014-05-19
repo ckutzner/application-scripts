@@ -5,3 +5,5 @@ My application process relies heavily on LaTeX and the bash. Further utilities u
 This toolset also incorporates git operations at the crucial points. Comment them if you use a different VCS or want to control the git process manually.
 
 This toolset is developed and tested under Ubuntu 12.04. Tests with other Linux/Unix-based systems are appreciated. Ports to other OS are welcome, too.
+
+You will find a sample project in the folder sample-data. Use this if you don't want to test the utilites on "live" data.
