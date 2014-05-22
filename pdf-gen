@@ -1,7 +1,11 @@
 #!/bin/bash
 # generates pdf from anschreiben, concatenates it with current cv & testimonials
 
+# add user prompt for naming
+echo "Bitte gib deinen Namen ein:"
+read $name
+
 pdflatex anschreiben.tex
 pdflatex ../../cv-current.tex
 rm *.aux *.log *.out
-pdfjoin anschreiben.pdf cv-current.pdf ../../zeugnisse.pdf --outfile Bewerbung_Camilla_Kutzner.pdf
+pdfjoin anschreiben.pdf cv-current.pdf ../../zeugnisse.pdf --outfile Bewerbung\ $name.pdf
