@@ -1,0 +1,1 @@
+\setkomavar{subject}{Ihr Stellenangebot „%s“ auf %s} 
