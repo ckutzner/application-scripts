@@ -1,6 +1,6 @@
 #!/bin/bash
 # generates pdf from anschreiben, concatenates it with current cv & testimonials
-
+# generate anschreiben pdf
 pdflatex anschreiben.tex
 
 # add user prompt for naming
@@ -8,14 +8,16 @@ echo "Bitte gib deinen Namen ein:"
 read name
 
 # add user prompt: Where is CV?
-echo "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, und 2, wenn das CV im übergeordneten Ordner des Monatsordners liegt:"
+echo "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner liegt:"
 read cvwhere
 
+# generate cv pdf
 pdflatex ../../cv-current.tex
 
 # add user prompt: include work sample?
 echo "Soll eine Arbeitsprobe angehängt werden? Bitte gibt 'y' für 'ja' oder 'n' für 'nein' ein:"
 read sample
+
 
 rm *.aux *.log *.out
 
