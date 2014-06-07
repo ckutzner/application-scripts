@@ -11,7 +11,15 @@ echo "OK, $name, let's go!"
 read -p "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner zwei Ebenen höher liegt: " cvwhere
 
 # generate cv pdf
-pdflatex ../../cv-current.tex
+if [cvwhere == 1]
+	then
+		pdflatex cv-current.tex
+	elif [cvwhere == 2]
+		pdflatex ../cv-current.tex
+	else
+		pdflatex ../../cv-current.tex
+fi	
+
 
 # add user prompt: include work sample?
 read -p "Soll eine Arbeitsprobe angehängt werden? Bitte gibt 'y' für 'ja' oder 'n' für 'nein' ein:" sample
