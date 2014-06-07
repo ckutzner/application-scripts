@@ -4,21 +4,17 @@
 pdflatex anschreiben.tex
 
 # add user prompt for naming
-echo "Bitte gib deinen Namen ein:"
-read name
+read "Bitte gib deinen Namen ein: " name
+echo "OK, $name, let's go!"
 
 # add user prompt: Where is CV?
-echo "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner liegt:"
-read cvwhere
+read -p "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner zwei Ebenen höher liegt: " cvwhere
 
 # generate cv pdf
 pdflatex ../../cv-current.tex
 
 # add user prompt: include work sample?
-echo "Soll eine Arbeitsprobe angehängt werden? Bitte gibt 'y' für 'ja' oder 'n' für 'nein' ein:"
-read sample
-
-
-rm *.aux *.log *.out
+read -p "Soll eine Arbeitsprobe angehängt werden? Bitte gibt 'y' für 'ja' oder 'n' für 'nein' ein:" sample
 
 pdfjoin anschreiben.pdf cv-current.pdf ../../zeugnisse.pdf --outfile Bewerbung\ $name.pdf
+rm *.aux *.log *.out
