@@ -4,18 +4,19 @@
 pdflatex anschreiben.tex
 
 # add user prompt for naming
-read "Bitte gib deinen Namen ein: " name
+read -p "Bitte gib deinen Namen ein: " name
 echo "OK, $name, let's go!"
 
 # add user prompt: Where is CV?
 read -p "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner zwei Ebenen höher liegt: " cvwhere
 
 # generate cv pdf
-if [ "$cvwhere" == 1] 
+if [ "$cvwhere" == "1" ]  
 	then
 		pdflatex cv-current.tex
-	elif [ "$cvwhere" == 2 ]
-		pdflatex ../cv-current.tex
+	elif [ "$cvwhere" == "2" ]
+		then
+			pdflatex ../cv-current.tex
 	else
 		pdflatex ../../cv-current.tex
 fi	
