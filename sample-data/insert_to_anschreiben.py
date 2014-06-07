@@ -11,6 +11,8 @@ company_city = raw_input('Ort: ')
  
 #Anrede; case 1: sehr geehrte Frau, case2: sehr geehrter Herr, case3: sehr geehrte Damen und Herren
 
+address = xyz
+
 # get template file
 infile = open('anschreiben_strings.txt', 'r')
 template = infile.read()
