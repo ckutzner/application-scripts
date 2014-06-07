@@ -23,5 +23,5 @@ fi
 # user prompt: include work sample?
 read -p "Soll eine Arbeitsprobe angehängt werden? Bitte gibt 'y' für 'ja' oder 'n' für 'nein' ein:" sample
 
-pdfjoin anschreiben.pdf cv-current.pdf ../../zeugnisse.pdf --outfile Bewerbung\ $name.pdf
+pdfjoin anschreiben.pdf cv-current.pdf *eugnisse.pdf --outfile Bewerbung\ $name.pdf
 rm *.aux *.log *.out
