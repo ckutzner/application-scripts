@@ -1,0 +1,3 @@
+\setkomavar{subject}{Ihr Stellenangebot „foomwerbix“ auf wberib  - Referenznummer: 14-zzd}
+\begin{letter}{\textbf{Foo Bar}\\z.Hd. Erik Beispiel\\Beispielstr. 1\\12456 ort} 
+\opening{Sehr geehrte Frau Beispiel,} 
