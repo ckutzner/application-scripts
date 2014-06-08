@@ -1,7 +1,36 @@
 #!/bin/bash
 # generates pdf from anschreiben, concatenates it with current cv & testimonials
-
+# generate anschreiben pdf
 pdflatex anschreiben.tex
-pdflatex ../../cv-current.tex
+
+# add user prompt for naming
+read -p "Bitte gib deinen Namen ein: " rawname
+echo "OK, $rawname, let's go!"
+fullname=${rawname// /_}
+# echo $fullname #test: print full name
+
+# add user prompt: Where is CV?
+read -p "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner zwei Ebenen höher liegt: " cvwhere
+
+# generate cv pdf
+if [ "$cvwhere" == "1" ]  
+	then
+		pdflatex cv-current.tex
+	elif [ "$cvwhere" == "2" ]
+		then
+			pdflatex ../cv-current.tex
+	else
+		pdflatex ../../cv-current.tex
+fi	
+
+# user prompt: include work sample?, then concatenate files
+read -p "Soll eine Arbeitsprobe angehängt werden? Bitte gibt 'y' für 'ja' oder 'n' für 'nein' ein:" sample
+
+if [ "$sample" == "y" ]
+	then
+		pdfjoin anschreiben.pdf cv-current.pdf *eugni*.pdf *rbeitsprobe.pdf --outfile Bewerbung_${fullname}.pdf
+	else
+		pdfjoin anschreiben.pdf cv-current.pdf *eugni*.pdf --outfile Bewerbung_${fullname}.pdf
+fi
+
 rm *.aux *.log *.out
-pdfjoin anschreiben.pdf cv-current.pdf ../../zeugnisse.pdf --outfile Bewerbung_Camilla_Kutzner.pdf
