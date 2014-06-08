@@ -7,7 +7,7 @@ pdflatex anschreiben.tex
 read -p "Bitte gib deinen Namen ein: " rawname
 echo "OK, $rawname, let's go!"
 fullname=${rawname// /_}
-echo $fullname
+# echo $fullname #test: print full name
 
 # add user prompt: Where is CV?
 read -p "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner zwei Ebenen höher liegt: " cvwhere
