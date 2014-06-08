@@ -2,7 +2,7 @@
 # prompt user for jobdescription and source, to be replaced with reading from other files later
 jobtitle = raw_input('Bitte gib den Jobtitel an: ')
 jobsrc = raw_input('Bitte gib eine Quelle ein: ')
-refstring = '- Referenznummer' + raw_input('Referenznummer:') + ''
+refstring = '- Referenznummer:' + raw_input('Referenznummer:') # insert if function here later, just in case input is empty, to print empty string
 company = raw_input('Firmenname: ')
 apforename =  raw_input('Vorname der_des Ansprechpartner_in (oder Personalabteilung): ')
 aplastname =raw_input('Nachname der_des Ansprechpartner_in: ')
@@ -12,17 +12,17 @@ company_city = raw_input('Ort: ')
  
 #Anrede; case 1: sehr geehrte Frau, case2: sehr geehrter Herr, case3: sehr geehrte Damen und Herren
 
-#address = xyz
+address = "Sehr geehrte Frau"
 
 # get template file
 infile = open('anschreiben_strings.txt', 'r')
 template = infile.read()
 print template #just for test purposes
 
-print "This is how your subject line now looks like:\n", template % (jobtitle, jobsrc)
+print "This is how your subject line now looks like:\n", template % (jobtitle, jobsrc, refstring, company, apforename, aplastname, company_address, company_zipcode, company_city, address, aplastname)
 
 outfile = open('anschreiben_mit_strings.txt', 'w')
-outfile.write(str(template) % (jobtitle, jobsrc))
+outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, apforename, aplastname, company_address, company_zipcode, company_city, address, aplastname))
 
 outfile.close()
 infile.close()
