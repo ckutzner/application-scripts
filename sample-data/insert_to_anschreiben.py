@@ -16,10 +16,10 @@ address = "Sehr geehrte Frau"
 
 # get template file
 with open('anschreiben_strings.txt', 'r') as infile:
-template = infile.read()
+	template = infile.read()
 print template #just for test purposes
 
 print "This is how your subject line now looks like:\n", template % (jobtitle, jobsrc, refstring, company, apforename, aplastname, company_address, company_zipcode, company_city, address, aplastname)
 
 with open('anschreiben_mit_strings.txt', 'w') as outfile:
-outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, apforename, aplastname, company_address, company_zipcode, company_city, address, aplastname))
+	outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, apforename, aplastname, company_address, company_zipcode, company_city, address, aplastname))
