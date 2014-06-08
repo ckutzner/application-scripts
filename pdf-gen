@@ -4,8 +4,10 @@
 pdflatex anschreiben.tex
 
 # add user prompt for naming
-read -p "Bitte gib deinen Namen ein: " name
-echo "OK, $name, let's go!"
+read -p "Bitte gib deinen Namen ein: " rawname
+echo "OK, $rawname, let's go!"
+fullname=${rawname// /_}
+echo $fullname
 
 # add user prompt: Where is CV?
 read -p "Bitte gib 1 ein, wenn das CV in diesem Ordner liegt, 2, wenn es im übergeordneten Ordner liegt, und 3, wenn das CV im Ordner zwei Ebenen höher liegt: " cvwhere
@@ -21,8 +23,14 @@ if [ "$cvwhere" == "1" ]
 		pdflatex ../../cv-current.tex
 fi	
 
-# user prompt: include work sample?
+# user prompt: include work sample?, then concatenate files
 read -p "Soll eine Arbeitsprobe angehängt werden? Bitte gibt 'y' für 'ja' oder 'n' für 'nein' ein:" sample
 
-pdfjoin anschreiben.pdf cv-current.pdf *eugnisse.pdf --outfile Bewerbung\ $name.pdf
+if [ "$sample" == "y" ]
+	then
+		pdfjoin anschreiben.pdf cv-current.pdf *eugni*.pdf *rbeitsprobe.pdf --outfile Bewerbung_${fullname}.pdf
+	else
+		pdfjoin anschreiben.pdf cv-current.pdf *eugni*.pdf --outfile Bewerbung_${fullname}.pdf
+fi
+
 rm *.aux *.log *.out
