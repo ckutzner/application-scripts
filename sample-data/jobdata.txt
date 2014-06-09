@@ -1,0 +1,12 @@
+Jobtitle: Expert/in für Dingsbums
+Quelle: Superzeitschrift vom 13.09.2012
+Referenznummer: 14-ZZ-2305
+Firma: Muster GmbH & Co. KG
+Ansprechperson: Erik Beispiel
+Strasse: Beispielstraße 12
+PLZ: 12456
+Ort: Beispielstadt
+Telefon: 0122/4506732
+Email: foo@example.com
+Anrede: Sehr geehrter Herr 
+Jobdescription: Wir suchen eine tolle Superkraft-Expertin.
