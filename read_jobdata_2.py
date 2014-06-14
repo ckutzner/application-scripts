@@ -1,3 +1,4 @@
+#!/usr/bin/env python 
 # -*- coding: utf-8 -*-
 # Initialize the data dictionary
 data_dictionary = {'Jobtitle:':'', 'Quelle:':'', 'Referenznummer:':'', 'Firma:':'', 'Ansprechperson:':'', 'Strasse:':'', 'PLZ:':'', 'Ort:':'', 'Telefon:':'', 'Email:':'', 'Anrede:':'', 'Jobdescription:':''}

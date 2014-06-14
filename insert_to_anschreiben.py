@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # prompt user for jobdescription and source, to be replaced with reading from other files later
 jobtitle = raw_input("Bitte gib den Jobtitel an: ")
