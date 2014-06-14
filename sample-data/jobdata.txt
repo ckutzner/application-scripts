@@ -8,5 +8,4 @@ PLZ: 12456
 Ort: Beispielstadt
 Telefon: 0122/4506732
 Email: foo@example.com
-Anrede: Sehr geehrter Herr 
-Jobdescription: Wir suchen eine tolle Superkraft-Expertin.
+Art der Bewerbung: Email 

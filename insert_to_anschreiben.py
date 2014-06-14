@@ -3,17 +3,37 @@
 import datetime
 
 # Initialize the data dictionary
-data_dictionary = {'Jobtitle:':'', 'Quelle:':'', 'Referenznummer:':'', 'Firma:':'', 'Ansprechperson:':'', 'Strasse:':'', 'PLZ:':'', 'Ort:':'', 'Telefon:':'', 'Email:':'', 'Art_der_Bewerbung':''} 
+data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 'Ansprechperson':'', 'Strasse':'', 'PLZ':'', 'Ort':'', 'Telefon':'', 'Email':'', 'Art der Bewerbung':''} 
 
-#fill variables; 
-jobtitle = raw_input("Bitte gib den Jobtitel an: ")
-jobsrc = raw_input("Bitte gib eine Quelle ein: ")
-rawref = raw_input("Referenznummer: ") 
-company = raw_input("Firmenname: ")
-responsible =  raw_input("Ansprechpartner_in: ")
-company_address = raw_input("Straße und Hausnummer: ")
-company_zipcode = raw_input("Postleitzahl: ")
-company_city = raw_input("Ort: ")
+# Read the jobdata file and fill the dictionary
+with open("sample-data/jobdata.txt", mode='rt') as f:
+    for line in f:
+        tokens = line.split(': ',1)
+        first_token = tokens[0]
+        remaining_tokens = tokens[1]
+
+        if remaining_tokens == '':
+            continue;
+
+        if first_token not in data_dictionary.keys():
+            print "WARNING: First token "+first_token+" not a key of the data_dictionary."
+            continue;
+
+        data_dictionary[first_token] = remaining_tokens
+
+#fill variables; this is somewhat unelegant, but the best solution to remove newline chars. 
+jobtitle = data_dictionary['Jobtitle'].strip('\n')
+jobsrc = data_dictionary['Quelle'].strip('\n')
+rawref = data_dictionary['Referenznummer'].strip('\n')
+company = data_dictionary['Firma'].strip('\n')
+responsible = data_dictionary['Ansprechperson'].strip('\n')
+company_address = data_dictionary['Strasse'].strip('\n')
+company_zipcode = data_dictionary['PLZ'].strip('\n')
+company_city = data_dictionary['Ort'].strip('\n')
+
+# print for test purposes
+#print data_dictionary
+#print jobtitle, jobsrc, rawref, company, responsible, company_address, company_zipcode, company_city
 
 # make refstring
 if rawref == "" or rawref == " ":
@@ -24,7 +44,7 @@ else:
 # turn name of responsible person into list, so that the last name can be used in the opening
 rpname = responsible.split(' ')
 addressee = rpname[-1]
-print "Der Nachname der verantwortlichen Person lautet", addressee
+# print "Der Nachname der verantwortlichen Person lautet", addressee
  
 #Anrede; case 1: sehr geehrte Frau, case2: sehr geehrter Herr, case3: sehr geehrte Damen und Herren
 address = ""
@@ -60,8 +80,8 @@ with open('sample-data/anschreiben_opening.txt', 'w') as outfile:
 	outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening))
 
 # this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
-outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, jobtitle, datetime.date.today().strftime("%d.%m.%Y")]
+outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, str(data_dictionary['Telefon']).strip('\n'),str(data_dictionary['Email']).strip('\n'), jobtitle, str(data_dictionary['Art der Bewerbung']).strip('\n'), datetime.date.today().strftime("%d.%m.%Y")]
 goneout = ('\"'+'\",\"'.join(outlist)+'\"')
-outdatefile = str(datetime.date.today().strftime("%Y-%m-%d") + "application.csv")
-with open(outdatefile, 'w') as temp_out:
-	temp_out.write(goneout)
+outdatefile = str(datetime.date.today().strftime("%Y-%m-%d") + "_applications.csv")
+with open(outdatefile, 'a') as temp_out:
+	temp_out.write('\n' + goneout)
