@@ -45,10 +45,10 @@ else:
 	opening = address + " " + addressee
 
 # get template file
-with open('anschreiben_strings.txt', 'r') as infile:
+with open('templatedata/anschreiben_strings.txt', 'r') as infile:
 	template = infile.read()
 
 #print 'So sieht der Briefanfang jetzt aus:\n', template % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening)
 
-with open('anschreiben_mit_strings.txt', 'w') as outfile:
+with open('sample-data/anschreiben_mit_strings.txt', 'w') as outfile:
 	outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening))
