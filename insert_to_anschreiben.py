@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Call this script from your main jobapplication directory.
+
 import datetime
+from os import system
 
 # Initialize the data dictionary
 data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 'Ansprechperson':'', 'Strasse':'', 'PLZ':'', 'Ort':'', 'Telefon':'', 'Email':'', 'Art der Bewerbung':''} 
@@ -78,6 +81,9 @@ with open('templatedata/anschreiben_strings.txt', 'r') as infile:
 
 with open('sample-data/anschreiben_opening.txt', 'w') as outfile:
 	outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening))
+
+# join opening together with other template files
+system('cat templatedata/anschreiben1.tex sample-data/anschreiben_opening.txt templatedata/anschreiben2.tex > sample-data/anschreiben_prepared.tex')
 
 # this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
 outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, str(data_dictionary['Telefon']).strip('\n'),str(data_dictionary['Email']).strip('\n'), jobtitle, str(data_dictionary['Art der Bewerbung']).strip('\n'), datetime.date.today().strftime("%d.%m.%Y")]
