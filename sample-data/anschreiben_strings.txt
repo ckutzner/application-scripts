@@ -1,3 +1,0 @@
-\setkomavar{subject}{Ihr Stellenangebot „%s“ auf %s %s}
-\begin{letter}{\textbf{%s}\\z.Hd. %s\\%s\\%s %s} 
-\opening{%s,} 
