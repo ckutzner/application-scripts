@@ -5,6 +5,11 @@
 import datetime
 from os import system
 
+#job/output directory
+jobdir = raw_input("Bitte gib ein, in welchem Verzeichnis die Jobdaten liegen: ").strip('/')
+
+print "Job directory is: %s" % jobdir
+
 # Initialize the data dictionary
 data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 'Ansprechperson':'', 'Strasse':'', 'PLZ':'', 'Ort':'', 'Telefon':'', 'Email':'', 'Art der Bewerbung':''} 
 
