@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Call this script from your main jobapplication directory.
+# Call this script from your main job application directory.
 
 import datetime
 from os import system
 
 #job/output directory
 jobdir = raw_input("Bitte gib ein, in welchem Verzeichnis die Jobdaten liegen: ").strip('/')
-print "Job directory is: %s" % jobdir
 
 # Initialize the data dictionary
 data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 'Ansprechperson':'', 'Strasse':'', 'PLZ':'', 'Ort':'', 'Telefon':'', 'Email':'', 'Art der Bewerbung':''} 
@@ -38,10 +37,6 @@ company_address = data_dictionary['Strasse'].strip('\n')
 company_zipcode = data_dictionary['PLZ'].strip('\n')
 company_city = data_dictionary['Ort'].strip('\n')
 
-# print for test purposes
-#print data_dictionary
-#print jobtitle, jobsrc, rawref, company, responsible, company_address, company_zipcode, company_city
-
 # make refstring
 if rawref == "" or rawref == " ":
 	refstring = ""
@@ -51,7 +46,6 @@ else:
 # turn name of responsible person into list, so that the last name can be used in the opening
 rpname = responsible.split(' ')
 addressee = rpname[-1]
-# print "Der Nachname der verantwortlichen Person lautet", addressee
  
 #Anrede; case 1: sehr geehrte Frau, case2: sehr geehrter Herr, case3: sehr geehrte Damen und Herren
 address = ""
@@ -80,8 +74,6 @@ else:
 # get template file
 with open('templatedata/anschreiben_strings.txt', 'r') as infile:
 	template = infile.read()
-
-#print 'So sieht der Briefanfang jetzt aus:\n', template % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening)
 
 with open('%s/anschreiben_opening.txt' % jobdir, 'w') as outfile:
 	outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening))
