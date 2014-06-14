@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# prompt user for jobdescription and source, to be replaced with reading from other files later
+import datetime
+
+# Initialize the data dictionary
+data_dictionary = {'Jobtitle:':'', 'Quelle:':'', 'Referenznummer:':'', 'Firma:':'', 'Ansprechperson:':'', 'Strasse:':'', 'PLZ:':'', 'Ort:':'', 'Telefon:':'', 'Email:':'', 'Art_der_Bewerbung':''} 
+
+#fill variables; 
 jobtitle = raw_input("Bitte gib den Jobtitel an: ")
 jobsrc = raw_input("Bitte gib eine Quelle ein: ")
 rawref = raw_input("Referenznummer: ") 
@@ -51,5 +56,12 @@ with open('templatedata/anschreiben_strings.txt', 'r') as infile:
 
 #print 'So sieht der Briefanfang jetzt aus:\n', template % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening)
 
-with open('sample-data/anschreiben_mit_strings.txt', 'w') as outfile:
+with open('sample-data/anschreiben_opening.txt', 'w') as outfile:
 	outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening))
+
+# this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
+outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, jobtitle, datetime.date.today().strftime("%d.%m.%Y")]
+goneout = ('\"'+'\",\"'.join(outlist)+'\"')
+outdatefile = str(datetime.date.today().strftime("%Y-%m-%d") + "application.csv")
+with open(outdatefile, 'w') as temp_out:
+	temp_out.write(goneout)
