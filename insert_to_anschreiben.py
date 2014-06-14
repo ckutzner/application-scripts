@@ -7,14 +7,13 @@ from os import system
 
 #job/output directory
 jobdir = raw_input("Bitte gib ein, in welchem Verzeichnis die Jobdaten liegen: ").strip('/')
-
 print "Job directory is: %s" % jobdir
 
 # Initialize the data dictionary
 data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 'Ansprechperson':'', 'Strasse':'', 'PLZ':'', 'Ort':'', 'Telefon':'', 'Email':'', 'Art der Bewerbung':''} 
 
 # Read the jobdata file and fill the dictionary
-with open("sample-data/jobdata.txt", mode='rt') as f:
+with open("%s/jobdata.txt" % jobdir, mode='rt') as f:
     for line in f:
         tokens = line.split(': ',1)
         first_token = tokens[0]
@@ -84,11 +83,12 @@ with open('templatedata/anschreiben_strings.txt', 'r') as infile:
 
 #print 'So sieht der Briefanfang jetzt aus:\n', template % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening)
 
-with open('sample-data/anschreiben_opening.txt', 'w') as outfile:
+with open('%s/anschreiben_opening.txt' % jobdir, 'w') as outfile:
 	outfile.write(str(template) % (jobtitle, jobsrc, refstring, company, responsible, company_address, company_zipcode, company_city, opening))
 
 # join opening together with other template files
-system('cat templatedata/anschreiben1.tex sample-data/anschreiben_opening.txt templatedata/anschreiben2.tex > sample-data/anschreiben_prepared.tex')
+system('cat templatedata/anschreiben1.tex %s/anschreiben_opening.txt templatedata/anschreiben2.tex > %s/anschreiben.tex' % (jobdir, jobdir))
+system('rm %s/anschreiben_opening.txt' % jobdir)
 
 # this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
 outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, str(data_dictionary['Telefon']).strip('\n'),str(data_dictionary['Email']).strip('\n'), jobtitle, str(data_dictionary['Art der Bewerbung']).strip('\n'), datetime.date.today().strftime("%d.%m.%Y")]
