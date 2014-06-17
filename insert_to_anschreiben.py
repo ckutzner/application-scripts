@@ -14,7 +14,9 @@ data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 
 # Read the jobdata file and fill the dictionary
 with open("%s/jobdata.txt" % jobdir, mode='rt') as f:
     for line in f:
-        tokens = line.split(': ',1)
+        tokens = line.split(':',1)
+        if len(tokens) == 0:
+            continue;
         first_token = tokens[0]
         remaining_tokens = tokens[1]
 
@@ -25,17 +27,17 @@ with open("%s/jobdata.txt" % jobdir, mode='rt') as f:
             print "WARNING: First token "+first_token+" not a key of the data_dictionary."
             continue;
 
-        data_dictionary[first_token] = remaining_tokens
+        data_dictionary[first_token] = remaining_tokens.strip(' \n')
 
 #fill variables; this is somewhat unelegant, but the best solution to remove newline chars. 
-jobtitle = data_dictionary['Jobtitle'].strip('\n')
-jobsrc = data_dictionary['Quelle'].strip('\n')
-rawref = data_dictionary['Referenznummer'].strip('\n')
-company = data_dictionary['Firma'].strip('\n')
-responsible = data_dictionary['Ansprechperson'].strip('\n')
-company_address = data_dictionary['Strasse'].strip('\n')
-company_zipcode = data_dictionary['PLZ'].strip('\n')
-company_city = data_dictionary['Ort'].strip('\n')
+jobtitle = data_dictionary['Jobtitle']
+jobsrc = data_dictionary['Quelle']
+rawref = data_dictionary['Referenznummer']
+company = data_dictionary['Firma']
+responsible = data_dictionary['Ansprechperson']
+company_address = data_dictionary['Strasse']
+company_zipcode = data_dictionary['PLZ']
+company_city = data_dictionary['Ort']
 
 # make refstring
 if rawref == "" or rawref == " ":
@@ -83,8 +85,8 @@ system('cat templatedata/anschreiben1.tex %s/anschreiben_opening.txt templatedat
 system('rm %s/anschreiben_opening.txt' % jobdir)
 
 # this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
-outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, str(data_dictionary['Telefon']).strip('\n'),str(data_dictionary['Email']).strip('\n'), jobtitle, str(data_dictionary['Art der Bewerbung']).strip('\n'), datetime.date.today().strftime("%d.%m.%Y")]
+outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, str(data_dictionary['Telefon']).strip(' \n'),str(data_dictionary['Email']).strip(' \n'), jobtitle, str(data_dictionary['Art der Bewerbung']).strip(' \n'), datetime.date.today().strftime("%d.%m.%Y")]
 goneout = ('\"'+'\",\"'.join(outlist)+'\"')
 outdatefile = str(datetime.date.today().strftime("%Y-%m-%d") + "_applications.csv")
 with open(outdatefile, 'a') as temp_out:
-	temp_out.write('\n' + goneout)
+	temp_out.write(goneout + '\n')
