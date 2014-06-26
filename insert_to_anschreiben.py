@@ -14,12 +14,14 @@ data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 
 # Read the jobdata file and fill the dictionary
 with open("%s/jobdata.txt" % jobdir, mode='rt') as f:
     for line in f:
-        tokens = line.split(':',1)
-        if len(tokens) == 0:
+	trimmed_line = line.strip()
+	print trimmed_line
+        tokens = trimmed_line.split(':',1)
+        if len(tokens) < 2:
             continue;
         first_token = tokens[0]
         remaining_tokens = tokens[1]
-
+	print first_token + ": " + remaining_tokens
         if remaining_tokens == '':
             continue;
 
@@ -27,7 +29,7 @@ with open("%s/jobdata.txt" % jobdir, mode='rt') as f:
             print "WARNING: First token "+first_token+" not a key of the data_dictionary."
             continue;
 
-        data_dictionary[first_token] = remaining_tokens.strip(' \n')
+        data_dictionary[first_token] = remaining_tokens.strip()
 
 #fill variables; this is somewhat unelegant, but the best solution to remove newline chars. 
 jobtitle = data_dictionary['Jobtitle']
