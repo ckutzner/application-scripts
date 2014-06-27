@@ -2,10 +2,10 @@
 # script to open thunderbird w/ prepopulated fields
 # call from folder that contains application pdf
 # make variables
-
-# line 10 of file jobdata.txt contains mail address
-address = echo $(sed -n 10p jobdata.txt | cut -d: -f2 | sed 's/^ //')
-
+#echo "Bitte gib noch einmal den Jobnamen ein: "
+#read jobname
+address=$(sed -n 10p jobdata.txt | cut -d: -f2 | sed "s/\s//")
+echo $address 
 echo "Bitte gib einen Betreff ein:"
 read subj
 
