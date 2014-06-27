@@ -4,7 +4,7 @@ echo "Bitte gib einen kurzen Namen für den neuen branch an und drücke ENTER"
 read jobname
 
 git checkout -b stelle/$jobname
-mkdir $(date +%m)/$jobname
+mkdir -p $(date +%m)/$jobname
 cp anschreiben.tex $(date +%m)/$jobname/
 cp ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
 #cp cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
