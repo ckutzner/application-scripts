@@ -7,6 +7,7 @@ git checkout -b stelle/$jobname
 mkdir -p $(date +%m)/$jobname
 cp anschreiben.tex $(date +%m)/$jobname/
 cp ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
+cp templatedata/jobdata.txt  $(date +%m)/$jobname/
 #cp cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
 #cp unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 git add .
