@@ -4,7 +4,7 @@
 # make variables
 #echo "Bitte gib noch einmal den Jobnamen ein: "
 #read jobname
-address=$(sed -n 10p jobdata.txt | cut -d: -f2 | sed "s/\s//")
+address=$(awk '($1 == "Email:") {print $2;}' jobdata.txt)
 echo $address 
 
 # call thunderbird
