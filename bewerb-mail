@@ -6,8 +6,6 @@
 #read jobname
 address=$(sed -n 10p jobdata.txt | cut -d: -f2 | sed "s/\s//")
 echo $address 
-echo "Bitte gib einen Betreff ein:"
-read subj
 
 # call thunderbird
-thunderbird -compose "to=$address,subject=$subj,body='$(cat mail.txt)',attachment=$(echo $(pwd)/?ewerbung*)"
+thunderbird -compose "to=$address,subject='$(head -1 current_mailsubject)',body='$(cat mail.txt)',attachment=$(echo $(pwd)/?ewerbung*)"
