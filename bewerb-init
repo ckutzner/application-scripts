@@ -3,7 +3,6 @@
 echo "Bitte gib einen kurzen Namen für den neuen branch an und drücke ENTER"
 read jobname
 
-# git checkout -b stelle/$jobname
 mkdir -p $(date +%m)/$jobname
 
 # cp -n ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
@@ -19,6 +18,3 @@ else
     echo $jobname > current_jobname
     echo $(date +%m)/$jobname > current_jobdirectory
 fi
-
-# git add .
-# git commit -am "new directory, added jobdata template & pix"
