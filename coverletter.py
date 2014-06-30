@@ -90,7 +90,7 @@ system('cat templatedata/anschreiben1.tex %s/anschreiben_opening.txt templatedat
 system('rm %s/anschreiben_opening.txt' % jobdir)
 
 # generate mail subject, write to a file
-with open (current_mailsubject, 'w') as msubj:
+with open ('%s/current_mailsubject' % jobdir, 'w') as msubj:
 	msubj.write(str('Ihr Stellenangebot „%s“ auf %s %s' % (jobtitle, jobsrc, refstring)))
 
 # this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
