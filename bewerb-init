@@ -3,12 +3,22 @@
 echo "Bitte gib einen kurzen Namen für den neuen branch an und drücke ENTER"
 read jobname
 
-git checkout -b stelle/$jobname
+# git checkout -b stelle/$jobname
 mkdir -p $(date +%m)/$jobname
-cp anschreiben.tex $(date +%m)/$jobname/
-cp ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
+
+# cp ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
 cp templatedata/jobdata.txt  $(date +%m)/$jobname/
-#cp cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
-#cp unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
-git add .
-git commit -am "new directory, added anschreiben + pix"
+# cp cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
+# cp unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
+
+# contributed by theknittingcat
+if [-f current_jobdirectory] # Todo: add OR condition to check for both
+then
+    echo "ERROR: File jobdirectory exists.  No changes made."
+else
+    echo $jobname > current_jobname
+    echo $(date +%m)/$jobname > current_jobdirectory
+fi
+
+# git add .
+# git commit -am "new directory, added jobdata template & pix"
