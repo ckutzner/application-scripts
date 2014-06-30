@@ -7,8 +7,9 @@ from os import system
 
 #job/output directory
 #jobdir = raw_input("Bitte gib ein, in welchem Verzeichnis die Jobdaten liegen: ").strip('/')
-with open () as d:
-	jobdir = d.readline() 
+with open (current_jobdirectory) as d:
+	jobdir = d.readline().strip()
+print "Job directory is: ", jobdir #for debugging
 
 # Initialize the data dictionary
 data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 'Ansprechperson':'', 'Strasse':'', 'PLZ':'', 'Ort':'', 'Telefon':'', 'Email':'', 'Art der Bewerbung':''} 
@@ -17,13 +18,13 @@ data_dictionary = {'Jobtitle':'', 'Quelle':'', 'Referenznummer':'', 'Firma':'', 
 with open("%s/jobdata.txt" % jobdir, mode='rt') as f:
     for line in f:
 	trimmed_line = line.strip()
-	print trimmed_line
+#	print trimmed_line
         tokens = trimmed_line.split(':',1)
         if len(tokens) < 2:
             continue;
         first_token = tokens[0]
         remaining_tokens = tokens[1]
-	print first_token + ": " + remaining_tokens
+#	print first_token + ": " + remaining_tokens
         if remaining_tokens == '':
             continue;
 
