@@ -89,6 +89,10 @@ with open('%s/anschreiben_opening.txt' % jobdir, 'w') as outfile:
 system('cat templatedata/anschreiben1.tex %s/anschreiben_opening.txt templatedata/anschreiben2.tex > %s/anschreiben.tex' % (jobdir, jobdir))
 system('rm %s/anschreiben_opening.txt' % jobdir)
 
+# generate mail subject, write to a file
+with open (current_mailsubject, 'w') as msubj:
+	msubj.write(str('Ihr Stellenangebot „%s“ auf %s %s' % (jobtitle, jobsrc, refstring)))
+
 # this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
 outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, str(data_dictionary['Telefon']).strip(' \n'),str(data_dictionary['Email']).strip(' \n'), jobtitle, str(data_dictionary['Art der Bewerbung']).strip(' \n'), datetime.date.today().strftime("%d.%m.%Y")]
 goneout = ('\"'+'\",\"'.join(outlist)+'\"')
