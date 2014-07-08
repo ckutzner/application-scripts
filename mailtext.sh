@@ -4,5 +4,4 @@
 awkwhere=$(echo $(which mailtext.sh) | sed 's/mailtext.sh$//')
 detex anschreiben.tex | awk -f $awkwhere/mailtextedit.awk > mail.txt
 
-
-
+# todo: error msg, wenn awkwhere keinen Wert ausgibt
