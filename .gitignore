@@ -3,3 +3,5 @@
 *.log
 *.out
 sample-data/*.pdf
+sample-data/current*
+current_*
