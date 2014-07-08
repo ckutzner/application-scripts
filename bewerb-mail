@@ -2,10 +2,13 @@
 # script to open thunderbird w/ prepopulated fields
 # call from folder that contains application pdf
 # make variables
-echo "Bitte gib die Emailadresse an:"
-read address
-echo "Bitte gib einen Betreff ein:"
-read subj
+address=$(awk '($1 == "Email:") {print $2;}' jobdata.txt)
+echo $address 
+if [ -z address ]
+then
+	echo "Achtung: Email-Adresse fehlt in jobdata.txt"
+	exit
+fi
 
 # call thunderbird
-thunderbird -compose "to=$address,subject=$subj,body='$(cat mail.txt)',attachment=$(echo $(pwd)/?ewerbung*)"
+thunderbird -compose "to=$address,subject='$(head -1 current_mailsubject)',body='$(cat mail.txt)',attachment=$(echo $(pwd)/[Bb]ewerbung*)"
