@@ -7,7 +7,7 @@ from os import system
 
 #job/output directory
 #jobdir = raw_input("Bitte gib ein, in welchem Verzeichnis die Jobdaten liegen: ").strip('/')
-with open (current_jobdirectory) as d:
+with open ('current_jobdirectory', 'r') as d:
 	jobdir = d.readline().strip()
 print "Job directory is: ", jobdir #for debugging
 
