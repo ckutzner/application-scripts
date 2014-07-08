@@ -11,7 +11,7 @@ cp -n templatedata/jobdata.txt  $(date +%m)/$jobname/
 # cp -n unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 
 # contributed by theknittingcat
-if [-f current_jobdirectory] # Todo: add OR condition to check for both
+if [ -f current_jobdirectory ] # Todo: add OR condition to check for both
 then
     echo "ERROR: File jobdirectory exists.  No changes made."
 else
