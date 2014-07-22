@@ -94,8 +94,16 @@ with open ('%s/current_mailsubject' % jobdir, 'w') as msubj:
 	msubj.write(str('Ihr Stellenangebot „%s“ auf %s %s' % (jobtitle, jobsrc, refstring)))
 
 # this is just a try at making a temporary csv. And yes, I know I should have a look at Python's CSV module, will do that some time. For now, this is a quick and dirty solution.
+outheadings = ["Referenznummer", "Firma", "Straße Nr.", "PLZ", "Ort", "Ansprechperson", "Telefon", "Email", "Stellenbezeichnung", "Art der Bewerbung", "Datum", "Ergebnis"]
+goneheadings = ('\"'+'\",\"'.join(outheadings)+'\"')
+
 outlist = [rawref, company, company_address, company_zipcode, company_city, responsible, str(data_dictionary['Telefon']).strip(' \n'),str(data_dictionary['Email']).strip(' \n'), jobtitle, str(data_dictionary['Art der Bewerbung']).strip(' \n'), datetime.date.today().strftime("%d.%m.%Y")]
 goneout = ('\"'+'\",\"'.join(outlist)+'\"')
-outdatefile = str(datetime.date.today().strftime("%Y-%m-%d") + "_applications.csv")
+outdatefile = str(datetime.date.today().strftime("%Y-%m") + "_applications.csv")
+
+if not os.path.isfile(outdatefile): 
+	with open (outdatefile, 'w') as temp_out:
+		temp_out.write(goneheadings + '\n')
+
 with open(outdatefile, 'a') as temp_out:
 	temp_out.write(goneout + '\n')
