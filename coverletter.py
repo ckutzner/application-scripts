@@ -4,6 +4,7 @@
 
 import datetime
 from os import system
+import os.path
 
 #job/output directory
 #jobdir = raw_input("Bitte gib ein, in welchem Verzeichnis die Jobdaten liegen: ").strip('/')

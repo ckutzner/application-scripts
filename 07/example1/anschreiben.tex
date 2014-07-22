@@ -1,0 +1,34 @@
+\documentclass[a4paper, parskip=full*, fromalign=right, fromphone, fromemail]{scrlttr2}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{ucs}
+\usepackage{marvosym}
+\usepackage[ngerman]{babel}
+%\usepackage{graphicx}
+%\widowpenalty=8500 % uncomment to make widow control sharper
+\begin{document}
+\pagestyle{plain}
+\setkomavar{fromname}{Erika Musterfrau}
+\setkomavar{fromaddress}{Musterstraße 12\\34567 Musterstadt}
+\setkomavar{signature}{Erika Musterfrau} 
+\setkomavar{fromphone}[\Telefon\enskip]{0123\,456~78~900}
+\setkomavar{fromemail}[\Email\enskip]{mail@example.com}
+\setkomavar{place}{Musterstadt}
+\setkomavar{subject}{Ihr Stellenangebot „Expert/in für Dingsbums“ auf Superzeitschrift vom 13.09.2012 - Referenznummer: 14-ZZ-2305}
+\begin{letter}{\textbf{Muster GmbH & Co. KG}\\z.Hd. Erik Beispiel\\Beispielstraße 12\\12456 Beispielstadt} 
+\opening{Sehr geehrter Herr Beispiel,} 
+Ich bin toll und Ihre Firma braucht mich.
+
+% Antrittstermin 
+Eine neue Stelle kann ich voraussichtlich zum 13.09.2014 antreten. Über ein angemessenes Gehalt werden wir uns sicherlich im persönlichen Gespräch einig.
+
+% Erreichbarkeit
+Sie erreichen mich telefonisch unter 0123\,456~78~900 oder per E-Mail unter mail@example.com.
+
+Vielen Dank für Ihre Aufmerksamkeit.
+
+\closing{Mit freundlichen Grüßen}
+%\ps{adding a postscript} 
+\encl{Lebenslauf incl. Foto\\Zeugnisse\\Arbeitsprobe} 
+\end{letter} 
+\end{document}
