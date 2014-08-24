@@ -1,14 +1,30 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Call this script from your main job application directory
+# Call this script from your main job application directory; enter start date and stop date as command line arguments 
 
+import sys
 import datetime
-from os import system
+import os
+import fnmatch
 
-# enter start and stop date
-start_date = raw_input("Bitte gib den Startmonat des Berichts im Format 'mm' ein: ")
-stop_date = raw_input("Bitte gib den Endmonat des Berichts im Format 'mm' ein: ")
+# enter start and stop month
+start = int(sys.argv[1]) # start month
+stop = int(sys.argv[2]) # stop month
 
-# read from csv
-with open(datafile, 'r') as d:
+# make loopable range from months
+if stop >= start:
+	stop += 12
+months = range(start, stop+1)
+
+filelist = []
+files_in_dir = os.listdir('.')
+
+for i in months:
+	if i > 12:
+		i -= 12
+		
+
+# determine file
+for f in filelist:
+	with open(file, 'r') as d: 
 	

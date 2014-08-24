@@ -1,7 +1,8 @@
 from os import system
-from sys import argv
+import sys
 
-number_of_args = len[sys.argv]-1
+number_of_args = len(sys.argv)-1
+print number_of_args
 
 sys.argv.pop(0)
 
