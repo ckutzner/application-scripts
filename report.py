@@ -35,4 +35,11 @@ print '\n'.join(filelist) # for test purposes
 # read from final files
 #for f in filelist:
 #	with open(f, 'r') as d: 
-	
+# what to do: 
+# read line from csv
+# split lines along delimiter, assign to variables?
+# rearrange and join fields according to jobcenter requirements
+# learn how to do fields with line wraps in LaTeX tables
+# wrap fields with appropriate latex syntax
+# write to reportcontent.tex
+# bonus points for function that only produces entries in a given timedelta (e.g. from 2014-07-23 to 2014-10-22)
