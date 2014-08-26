@@ -34,5 +34,5 @@ print '\n'.join(filelist) # for test purposes
 
 # read from final files
 #for f in filelist:
-#	with open(file, 'r') as d: 
+#	with open(f, 'r') as d: 
 	
