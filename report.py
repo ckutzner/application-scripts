@@ -6,7 +6,8 @@ import sys
 import datetime
 import os
 import fnmatch
-import codecs
+#import codecs
+import csv
 
 # enter start and stop month
 start = int(sys.argv[1]) # start month
@@ -29,19 +30,19 @@ for i in months:
 	for a in fnmatch.filter(raw_filelist, '[0-9][0-9][0-9][0-9]-*%d*.csv' % i):
 		filelist.append(a)
 	
-# read from final files; certainly there is a more elegant way using the csv class and unicode, like described below there: https://docs.python.org/2/library/csv.html#examples . For now, I'll stick with this clumsy workaround.
+#read from filelist
 for f in filelist:
-	g = codecs.open(f, encoding='utf-8') #needed bccsv files contain unicode characters
-	for line in g:
-		sline= line.strip('\n"') # remove newline characters and quotes at the beginning of lines
-		line_list = sline.split('","') # make list, separated by commas surrounded by quotes
-		outline = ' & '.join(line_list) # join list back by LaTeX field separators
-		h = codecs.open('report_test.tex', encoding='utf-8', mode='a+')  # then write it to the outfile 
-		h.write(outline + '\\\ \hline\n')
-		h.close() # Finally, close the files 
-	g.close()
-# what to do: 
-# rewrite: assign to variables?
-# rearrange and join fields according to jobcenter requirements
-# learn how to do fields with line wraps in LaTeX tables, either write formatting for it or incorporate it in writing program
+	with open(f, 'rb') as g:
+		reader = csv.DictReader(g, delimiter=",")	 	# build list of dictionaries
+		for row in reader:					# loop through list
+			if row['Ergebnis'] == "" or row['Ergebnis'] == None:
+				row['Ergebnis'] = " " 
+
+			out_line= [row['Datum'], str(row['Firma'] + "\newline" + row['Straße Nr.'] + ", " + row['PLZ'] + " " + row['Ort']), str(row['Telefon'] + "\newline" + row['Email']), row['Ansprechperson'], row['Stellenbezeichnung'], row['Art der Bewerbung'], row['Ergebnis']]
+#			print out_line
+			outline = str(' & '.join(out_line))
+			h = open('report_test.tex', 'a+')		# write to the outfile
+			h.write(outline + '\\\ \hline\n')	 	# write to outfile
+			h.close()					# then close the file
+
 # bonus points for function that only produces entries in a given timedelta (e.g. from 2014-07-23 to 2014-10-22) instead of months
