@@ -32,13 +32,16 @@ for i in months:
 	
 #read from filelist
 for f in filelist:
-	with open(f, 'rb') as g:
+	with open(f, 'r') as g:
 		reader = csv.DictReader(g, delimiter=",")	 	# build list of dictionaries
 		for row in reader:					# loop through list
 			if row['Ergebnis'] == "" or row['Ergebnis'] == None:
 				row['Ergebnis'] = " " 
-
-			out_line= [row['Datum'], str(row['Firma'] + "\\newline" + row['Straße Nr.'] + ", " + row['PLZ'] + " " + row['Ort']), str(row['Telefon'] + "\\newline" + row['Email']), row['Ansprechperson'], row['Stellenbezeichnung'], row['Art der Bewerbung'], row['Ergebnis']]
+			if row['Telefon'] == "" or row['Telefon'] == " " or row['Telefon'] == None:
+				contact = row['Email']
+			else:
+				contact = str(row['Telefon']+'\\newline '+row['Email'])
+			out_line= [row['Datum'], str(row['Firma'].replace('&','\\&') + "\\newline " + row['Straße Nr.'] + "\\newline " + row['PLZ'] + " " + row['Ort']), contact, row['Ansprechperson'], row['Stellenbezeichnung'].replace('&','\\&'), row['Art der Bewerbung'], row['Ergebnis']]
 #			print out_line
 			outline = str(' & '.join(out_line))
 			h = open('report_test.tex', 'a+')		# write to the outfile
