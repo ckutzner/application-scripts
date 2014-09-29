@@ -44,7 +44,7 @@ for f in filelist:
 			out_line= [row['Datum'], str(row['Firma'].replace('&','\\&') + "\\newline " + row['Straße Nr.'] + "\\newline " + row['PLZ'] + " " + row['Ort']), contact, row['Ansprechperson'], row['Stellenbezeichnung'].replace('&','\\&'), row['Art der Bewerbung'], row['Ergebnis']]
 #			print out_line
 			outline = str(' & '.join(out_line))
-			h = open('report_test.tex', 'a+')		# write to the outfile
+			h = open('report.tex', 'a+')			# write to the outfile
 			h.write(outline + '\\\ \hline\n')	 	# write to outfile
 			h.close()					# then close the file
 
