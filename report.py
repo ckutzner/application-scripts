@@ -38,7 +38,7 @@ for f in filelist:
 			if row['Ergebnis'] == "" or row['Ergebnis'] == None:
 				row['Ergebnis'] = " " 
 
-			out_line= [row['Datum'], str(row['Firma'] + "\newline" + row['Straße Nr.'] + ", " + row['PLZ'] + " " + row['Ort']), str(row['Telefon'] + "\newline" + row['Email']), row['Ansprechperson'], row['Stellenbezeichnung'], row['Art der Bewerbung'], row['Ergebnis']]
+			out_line= [row['Datum'], str(row['Firma'] + "\\newline" + row['Straße Nr.'] + ", " + row['PLZ'] + " " + row['Ort']), str(row['Telefon'] + "\\newline" + row['Email']), row['Ansprechperson'], row['Stellenbezeichnung'], row['Art der Bewerbung'], row['Ergebnis']]
 #			print out_line
 			outline = str(' & '.join(out_line))
 			h = open('report_test.tex', 'a+')		# write to the outfile
