@@ -7,5 +7,4 @@
 * find out how many lines make an output \> one page
 ## report-template.tex
 * modify so that it references correct output file OR generate report wrapper - referencing correct \*report\*.tex file - from template via report.py
-* fix length of last column
-* **IMPORTANT** remove personal data! Remove real application data too!
+* **IMPORTANT** Remove real application data too!
