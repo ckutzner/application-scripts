@@ -44,8 +44,24 @@ for f in filelist:
 			out_line= [row['Datum'], str(row['Firma'].replace('&','\\&') + "\\newline " + row['Straße Nr.'] + "\\newline " + row['PLZ'] + " " + row['Ort']), contact, row['Ansprechperson'], row['Stellenbezeichnung'].replace('&','\\&'), row['Art der Bewerbung'], row['Ergebnis']]
 #			print out_line
 			outline = str(' & '.join(out_line))
-			h = open('report.tex', 'a+')			# write to the outfile
+			h = open('report_lines.tex', 'a+')			# write to the outfile
 			h.write(outline + '\\\ \hline\n')	 	# write to outfile
 			h.close()					# then close the file
 
+output_filename = 'report_' + str(datetime.date.today().strftime("%Y-%m-%d") + '.tex' # possibly reverse this, or integrate if/else switch
+output_file = open(output_filename,'w')
+output_file.write('\\input{report-header.tex}')
+output_file.write('\\begin{center}
+\\begin{tabular}{|p{21mm}|p{45mm}|p{40mm}|p{30mm}|p{45mm}|p{20mm}|p{38mm}|} \hline % alignment of table columns
+\\input{reportheadings.tex} ') # make a file of its own of this one
+
+# WHILE LOOP über die zeilen in report-lines.tex
+with open('report_lines.tex', 'r') as f:
+	for line in f: 
+				
+# beijeder Iteration checke, ob man die max Anzahl der Zeilen erreicht hat
+# wenn ja, starte eine neue Tabelle
+# ganz am ende füge \end tabular, \end center und \end document hinzu
+
+output_file.close()
 # bonus points for function that only produces entries in a given timedelta (e.g. from 2014-07-23 to 2014-10-22) instead of months
