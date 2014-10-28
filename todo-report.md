@@ -7,4 +7,4 @@
 * find out how many lines make an output \> one page
 ## report-template.tex
 * modify so that it references correct output file OR generate report wrapper - referencing correct \*report\*.tex file - from template via report.py
-* **IMPORTANT** Remove real application data too!
+* DONE Remove real application data too!
