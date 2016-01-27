@@ -4,7 +4,11 @@
 sed 's/nummer(.*)\\,/nummer\s/g' anschreiben.tex > temp1.tex
 sed 's/nummer(\s.*)~/nummer\1\s/g' temp1.tex > temp2.tex
 awkwhere=$(echo $(which mailtext.sh) | sed 's/mailtext.sh$//')
+echo $awkwhere #for test purposes
+
+if [ -z "$awkwhere" ]
+	then echo "error, part of the mailtextedit program could not be found. please check your PATH variable!"
+fi 
+
 detex temp2.tex | awk -f $awkwhere/mailtextedit.awk > mail.txt
 rm temp1.tex temp2.tex
-
-# todo: error msg, wenn awkwhere keinen Wert ausgibt
