@@ -18,11 +18,14 @@ if [ -z $awkwhere ]
 fi 
 echo $awkwhere #for test purposes
 
+# convert .tex to .txt
 detex temp2.tex | awk -f $awkwhere/mailtextedit.awk > mail1.txt
 rm temp1.tex temp2.tex
 
 # füge nach der Grußformel eine Leerzeile ein
 sed -i '1a\\' mail1.txt
+
+#entferne überschüssige Leerzeichen
 cat -s mail1.txt > mail.txt 
 rm mail1.txt
 
