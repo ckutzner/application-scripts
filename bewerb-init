@@ -1,6 +1,6 @@
 #!/bin/bash
-# Skript zum automatischen Anlegen neuer Verzeichnisse für Bewerbungen; im Bewerbungs-Oberverzeichnis zu gebrauchen
-# 
+# Skript zum automatischen Anlegen neuer Verzeichnisse für Bewerbungen und Kopieren benötigter Dateie und Kopieren benötigter Dateien; im Bewerbungs-Oberverzeichnis zu gebrauchen
+# script for automatic generation of new directories for applications and copying relevant files; call from main directory
 echo "Bitte gib einen kurzen Namen für die Bewerbung an und drücke ENTER"
 read jobname
 
