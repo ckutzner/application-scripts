@@ -1,22 +1,23 @@
 #!/bin/bash
 # Skript zum automatischen Anlegen neuer Verzeichnisse für Bewerbungen; im Bewerbungs-Oberverzeichnis zu gebrauchen
+# 
 echo "Bitte gib einen kurzen Namen für die Bewerbung an und drücke ENTER"
 read jobname
 
 mkdir -p $(date +%m)/$jobname
 
-cp -n templatedata/jobdata.txt  $(date +%m)/$jobname/
-# cp -n cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
-# cp -n unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 
 # contributed by theknittingcat
 if [ -f current_jobdirectory ] || [ -f current_jobname ]
 then
-    echo "FEHLER: Es wurde bereits ein Bewerbungsverzeichnis angelegt! Bitte fahre mit dem Bearbeiten der Bewerbung fort oder lösche das Jobverzeichnis und wiederhole den Skript-Aufruf." >&2
+    echo "FEHLER: Es wurde bereits ein Bewerbungsverzeichnis angelegt! Bitte fahre mit dem Bearbeiten der Bewerbung fort oder lösche das Jobverzeichnis sowie die Dateien current_jobdirectory und current_jobname und wiederhole dann den Skript-Aufruf." >&2
     exit 1
 else
     echo $jobname > current_jobname
     echo $(date +%m)/$jobname > current_jobdirectory
+    cp -n templatedata/jobdata.txt  $(date +%m)/$jobname/
+    # cp -n cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
+    # cp -n unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 fi
 
 exit 0
