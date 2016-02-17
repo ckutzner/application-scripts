@@ -1,20 +1,23 @@
 #!/bin/bash
-# skript zum automatischen anlegen neuer git-branches & verzeichnisse für bewerbungen; im Bewerbungs-Oberverzeichnis zu gebrauchen
-echo "Bitte gib einen kurzen Namen für den neuen branch an und drücke ENTER"
+# Skript zum automatischen Anlegen neuer Verzeichnisse für Bewerbungen und Kopieren benötigter Dateie und Kopieren benötigter Dateien; im Bewerbungs-Oberverzeichnis zu gebrauchen
+# script for automatic generation of new directories for applications and copying relevant files; call from main directory
+echo "Bitte gib einen kurzen Namen für die Bewerbung an und drücke ENTER"
 read jobname
 
 mkdir -p $(date +%m)/$jobname
 
-# cp -n ausschreibung_template.txt $(date +%m)/$jobname/ausschreibung.txt
-cp -n templatedata/jobdata.txt  $(date +%m)/$jobname/
-# cp -n cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
-# cp -n unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 
 # contributed by theknittingcat
-if [ -f current_jobdirectory ] # Todo: add OR condition to check for both
+if [ -f current_jobdirectory ] || [ -f current_jobname ]
 then
-    echo "ERROR: File jobdirectory exists.  No changes made."
+    echo "FEHLER: Es wurde bereits ein Bewerbungsverzeichnis angelegt! Bitte fahre mit dem Bearbeiten der Bewerbung fort oder lösche das Jobverzeichnis sowie die Dateien current_jobdirectory und current_jobname und wiederhole dann den Skript-Aufruf." >&2
+    exit 1
 else
     echo $jobname > current_jobname
     echo $(date +%m)/$jobname > current_jobdirectory
+    cp -n templatedata/jobdata.txt  $(date +%m)/$jobname/
+    # cp -n cvphoto.jpg $(date +%m)/$jobname/ # in case you use a photo in your cv
+    # cp -n unterschrift.jpg $(date +%m)/$jobname # in case you want to use a scan of your signature
 fi
+
+exit 0
